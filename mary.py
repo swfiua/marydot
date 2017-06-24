@@ -90,7 +90,6 @@ def talk(text=None):
     speech.say(text)
 
 
-
 def uptime():
     """ how long have i been awake? """
 
@@ -132,7 +131,8 @@ outputs = [
     sing,
     scroll,
     talk,
-    pronounce]
+    #pronounce
+    ]
 
 
 actions = [
