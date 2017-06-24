@@ -56,7 +56,14 @@ def sing(song=None):
     if song is None:
         song = choose(songs)
     
-    music.play(songs[song])
+    music.play(song)
+    
+def pronounce(text=None):
+    
+    if text is None:
+        text = choose(sayings)
+    
+    speech.pronounce(text)
 
 def scroll(text):
     display.scroll(text)
@@ -71,7 +78,8 @@ def talk(text=None):
 outputs = [
     sing,
     scroll,
-    talk]
+    talk,
+    pronounce]
 
 def uptime():
     
