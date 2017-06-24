@@ -2,7 +2,6 @@ from microbit import *
 import random
 import speech
 import music
-import radio
 
 display.scroll('i love you')
 
@@ -98,6 +97,7 @@ def uptime():
 
 def message(text=None):
     """ message in a bottle """
+    import radio
     message = choose(sayings, text)
 
     radio.on()
@@ -107,9 +107,10 @@ def message(text=None):
 
 def alert():
     """ check for messages """
+    import radio
     radio.on()
 
-    time.sleep(random.randint(10, 20))
+    sleep(random.randint(10, 20))
 
     info = radio.receive()
 
