@@ -6,7 +6,7 @@ display.scroll('i love you')
 
 def choose(choices):
     
-    return choices[random.randint(0, len(choices) - 1)
+    return choices[random.randint(0, len(choices) - 1)]
 
 def say_something_simple():
     
