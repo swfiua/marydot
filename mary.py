@@ -4,10 +4,21 @@ import speech
 import music
 display.scroll('i love you')
 
+def choose(choices):
+    
+    return choices[random.randint(0, len(choices) - 1)
+
 def say_something_simple():
     
     n = len(sayings)
-    display.scroll(sayings[random.randint(0, n-1)])
+    
+    if random.random() < 0.9:
+        display.scroll(choose(sayings))
+    else:
+        if random.random() > 0.8:
+            sing()
+        else:
+            talk()
     
 sayings = [
 "How hot is it?",
@@ -21,14 +32,9 @@ sayings = [
 
 def data():
     
-    n = len(inputs)
+    label, function = choose(inputs)
     
-    choice = random.randint(0, n-1)
-    
-    label, function = inputs[choice]
-    
-    out = random.randint(0, len(outputs) - 1)
-    out = outputs[out]
+    out = choose(outputs)
     out(label)
     out(str(function()))
 
@@ -45,17 +51,21 @@ def get_songs():
 
 songs = get_songs()
 
-def sing(song):
+def sing(song=None):
     
-    song = random.randint(0, len(songs)-1)
+    if song is None:
+        song = choose(songs)
     
     music.play(songs[song])
 
 def scroll(text):
     display.scroll(text)
     
-def talk(text):
+def talk(text=None):
     
+    if text is None:
+        text = choose(sayings)
+ 
     speech.say(text)
 
 outputs = [
@@ -70,8 +80,7 @@ def uptime():
 inputs = [
     ('Temp(C):', temperature),
     ('waves:', accelerometer.current_gesture),
-    ('uptime', uptime),
-    
+    ('uptime', uptime),   
     ]
    
 actions = [
@@ -81,9 +90,7 @@ actions = [
 
 def do_something():
     
-    action = random.randint(0, len(actions)-1)
-    print('action:', action)
-    actions[action]()
+    choose(actions)()
 
 while True:
     
@@ -103,6 +110,5 @@ while True:
     wave = accelerometer.current_gesture()
     print(wave)
     if wave != '':
-        display.scroll(str(wave))
         do_something()
         
