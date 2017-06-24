@@ -63,7 +63,7 @@ def pronounce(text=None):
     if text is None:
         text = choose(sayings)
     
-    speech.pronounce(text)
+    speech.pronounce(speech.translate(text))
 
 def scroll(text):
     display.scroll(text)
