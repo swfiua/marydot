@@ -90,13 +90,6 @@ def talk(text=None):
     speech.say(text)
 
 
-outputs = [
-    radioout,
-    sing,
-    scroll,
-    talk,
-    pronounce]
-
 
 def uptime():
     """ how long have i been awake? """
@@ -116,6 +109,7 @@ def message(text=None):
 def alert():
     """ check for messages """
     radio.on()
+
     time.sleep(random.randint(10, 20))
 
     info = radio.receive()
@@ -127,8 +121,8 @@ def alert():
 
 
 inputs = [
-    ('Radio alert', alert,
-    ('Temp in centigrade', temperatureperature),
+    ('Radio alert', alert),
+    ('Temp in centigrade', temperature),
     ('waves to crowd:', accelerometer.current_gesture),
     ('uptime in seconds', uptime)]
 
@@ -147,7 +141,7 @@ actions = [
 
 
 def do_something():
-    """ time to do something """    
+    """ time to do something """ 
     choose(actions)()
 
 
@@ -162,7 +156,7 @@ while True:
         do_something()
 
     if button_b.was_pressed():
-    
+
         print('button b')
         do_something()
 
