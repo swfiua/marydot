@@ -2,10 +2,15 @@ from microbit import *
 import random
 import speech
 import music
+import radio
+
 display.scroll('i love you')
 
-def choose(choices):
+def choose(choices, data=None):
     
+    if data:
+        return data
+        
     return choices[random.randint(0, len(choices) - 1)]
 
 def say_something_simple():
@@ -15,7 +20,8 @@ def say_something_simple():
     if random.random() < 0.9:
         display.scroll(choose(sayings))
     else:
-        if random.random() > 0.8:
+        if random.random() < 0.8:
+            print('sing')
             sing()
         else:
             talk()
@@ -52,16 +58,14 @@ def get_songs():
 songs = get_songs()
 
 def sing(song=None):
-    
-    if song is None:
-        song = choose(songs)
+        
+    song = choose(songs, song)
     
     music.play(song)
     
 def pronounce(text=None):
     
-    if text is None:
-        text = choose(sayings)
+    text = choose(sayings, text)
     
     speech.pronounce(speech.translate(text))
 
@@ -70,12 +74,13 @@ def scroll(text):
     
 def talk(text=None):
     
-    if text is None:
-        text = choose(sayings)
+    text = choose(sayings, text)
  
     speech.say(text)
 
+
 outputs = [
+    radioout,
     sing,
     scroll,
     talk,
@@ -85,11 +90,37 @@ def uptime():
     
     return running_time() / 1000.
 
+def message(text=None):
+    
+    message = choose(sayings, text)
+    
+    radio.on()
+    radio.send(message)
+    radio.off()
+    
+def alert():
+    radio.on()
+    time.sleep(random.randint(10, 20)
+    message = radio.receive()
+    if message is None:
+        message = "no messages"
+    
+    return message
+        
+
 inputs = [
-    ('Temp(C):', temperature),
-    ('waves:', accelerometer.current_gesture),
-    ('uptime', uptime),   
+    ('Radio alert', alert,
+    ('Temp in centigrade", temperatureperature),
+    ('waves to crowd:', accelerometer.current_gesture),
+    ('uptime in seconds', uptime),   
     ]
+    
+outputs = [
+    message,
+    sing,
+    scroll,
+    talk,
+    pronounce]
    
 actions = [
     say_something_simple,
