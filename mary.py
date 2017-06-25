@@ -2,9 +2,9 @@ from microbit import *
 import random
 import speech
 import music
+import gc
 
 display.scroll('i love you')
-
 
 def choose(choices, data=None):
     """ make a choice """
@@ -18,7 +18,7 @@ def say_something_simple():
     """ ernie wise """
     n = len(sayings)
 
-    if random.random() < 0.9:
+    if random.random() < 0.6:
         display.scroll(choose(sayings))
     else:
         if random.random() < 0.8:
@@ -85,7 +85,9 @@ def scroll(text):
 def talk(text=None):
     """ talk to the world """
     text = choose(sayings, text)
-
+    
+    print(text)
+    gc.collect()
     speech.say(text)
 
 
@@ -119,16 +121,16 @@ def alert():
 
     return info
 
-
+ 
 inputs = [
-    ('Radio alert', alert),
+    #'Radio alert', alert),
     ('Temp in centigrade', temperature),
     ('waves to crowd:', accelerometer.current_gesture),
     ('uptime in seconds', uptime)]
 
 
 outputs = [
-    message,
+    #message,
     sing,
     scroll,
     talk,
@@ -165,4 +167,8 @@ while True:
     print(wave)
     if wave != '':
         do_something()
-
+        
+    display.scroll("memory:")
+    display.scroll(str(gc.mem_free()))
+    
+    gc.collect()
