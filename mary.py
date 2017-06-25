@@ -22,7 +22,6 @@ def say_something_simple():
         display.scroll(choose(sayings))
     else:
         if random.random() < 0.8:
-            print('sing')
             sing()
         else:
             talk()
@@ -86,7 +85,6 @@ def talk(text=None):
     """ talk to the world """
     text = choose(sayings, text)
     
-    print(text)
     gc.collect()
     speech.say(text)
 
@@ -148,27 +146,28 @@ def do_something():
     choose(actions)()
 
 
-while True:
+def main():
 
     print('hello world')
     display.show(Image.HEART)
     sleep(random.randint(0, 10) * 1000)
 
     if button_a.was_pressed():
-        print('button a')
         do_something()
 
     if button_b.was_pressed():
-
-        print('button b')
         do_something()
 
     wave = accelerometer.current_gesture()
-    print(wave)
     if wave != '':
         do_something()
         
-    display.scroll("memory:")
-    display.scroll(str(gc.mem_free()))
-    
     gc.collect()
+    
+while True:
+    try:
+        main()
+    except MemoryError:
+        display.scroll("memory:")
+        display.scroll(str(gc.mem_free()))
+        gc.collect()
