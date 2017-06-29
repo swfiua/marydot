@@ -6,6 +6,8 @@ import speech
 import music
 import gc
 
+quiet = False
+
 display.scroll('i love you')
 
 
@@ -67,8 +69,11 @@ songs = get_songs()
 def sing(song=None):
     """ sing something simple """
     song = choose(songs, song)
-
-    music.play(song)
+    
+    if quiet:
+        display.scroll(song)
+    else:
+        music.play(song)
 
 
 def pronounce(text=None):
@@ -87,7 +92,10 @@ def talk(text=None):
     text = choose(sayings, text)
 
     gc.collect()
-    speech.say(text)
+    if quiet:
+        display.scroll(text)
+    else:
+        speech.say(text)
 
 
 def uptime():
@@ -154,6 +162,7 @@ def main():
     sleep(random.randint(0, 10) * 1000)
 
     if button_a.was_pressed():
+        quiet = not quiet
         do_something()
 
     if button_b.was_pressed():
