@@ -162,11 +162,13 @@ def main():
     sleep(random.randint(0, 10) * 1000)
 
     if button_a.was_pressed():
+        global quiet
         quiet = not quiet
         do_something()
 
     if button_b.was_pressed():
         do_something()
+        music.play(music.BIRTHDAY)
 
     wave = accelerometer.current_gesture()
     if wave != '':
