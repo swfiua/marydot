@@ -24,7 +24,7 @@ def say_something_simple():
     if random.random() < 0.6:
         display.scroll(choose(sayings))
     else:
-        if random.random() < 0.8:
+        if random.random() < 0.1:
             sing()
         else:
             talk()
