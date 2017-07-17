@@ -32,13 +32,13 @@ def say_something_simple():
 
 sayings = [
     "How hot is it?",
-    "Go N Z with the red hat",
-    "U S A",
-    "push those pedals",
-    "flags are waving",
-    "what time do we eat?",
-    "oracle with the blue hat",
-    "check mate",
+    "r and b",
+    "b and b",
+    "four more runs",
+    "catch",
+    "what time is tea?",
+    "howzat!",
+    "stumps",
 ]
 
 
