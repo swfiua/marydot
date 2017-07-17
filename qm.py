@@ -147,16 +147,21 @@ def do_something():
     choose(actions)()
 
 
-def main():
 
+def main():
+    quiet = false
+    
     print('hello world')
     display.show(Image.HEART)
     sleep(random.randint(0, 10) * 1000)
 
     if button_a.was_pressed():
         do_something()
+        quiet = not quiet
 
     if button_b.was_pressed():
+        if not quiet:
+            sing()
         do_something()
 
     wave = accelerometer.current_gesture()

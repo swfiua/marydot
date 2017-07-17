@@ -167,8 +167,9 @@ def main():
         do_something()
 
     if button_b.was_pressed():
+        sing()
         do_something()
-        music.play(music.BIRTHDAY)
+        #music.play(music.BIRTHDAY)
 
     wave = accelerometer.current_gesture()
     if wave != '':
