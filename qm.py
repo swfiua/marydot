@@ -149,7 +149,7 @@ def do_something():
 
 
 def main():
-    quiet = false
+    quiet = False
     
     print('hello world')
     display.show(Image.HEART)
